@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "target": "ES3",
+    "experimentalDecorators": true
+  }
+}

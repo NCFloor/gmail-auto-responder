@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@types/google-apps-script": "^1.0.80",
+    "prettier": "^3.2.5"
+  }
+}
