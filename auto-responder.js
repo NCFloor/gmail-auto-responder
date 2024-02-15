@@ -1,5 +1,10 @@
+/**
+ * Update config as needed
+ */
 var config = {
     subjectFilter: "Website Contact from ncfloorandtile.com",
+    autoResponseSubject: "Message Received | ncfloorandtile.com",
+    forwardTo: "jason@ncfloorandtile.com, kerry@ncfloorandtile.com, sean@ncfloorandtile.com",
     labelName: "Auto-replied",
     maxThreads: 100,
     startingThread: 0,
@@ -15,19 +20,20 @@ function checkAndReply() {
         var threads = GmailApp.search(query, config.startingThread, config.maxThreads);
         config.startingThread += config.maxThreads;
         threads.forEach(function (thread) {
+            // Get last message in thread
             var message = thread.getMessages().at(-1);
             var originalBody = message.getBody();
-            var email = originalBody.match(/email : .+/gi)[0].split(" : ")[1];
+            var email = extractEmail(originalBody);
             template.originalMessage = cleanupMessage(originalBody);
             var body = template.evaluate().getContent();
             // Send reply
             MailApp.sendEmail({
                 to: email,
-                subject: "Message Received | ncfloorandtile.com",
+                subject: config.autoResponseSubject,
                 htmlBody: body
             });
             // Forward message
-            message.forward("jason@ncfloorandtile.com, kerry@ncfloorandtile.com, sean@ncfloorandtile.com");
+            message.forward(config.forwardTo);
             // Label the thread as auto-replied
             label.addToThread(thread);
             // Count the replies

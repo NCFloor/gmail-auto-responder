@@ -1,5 +1,10 @@
+/**
+ * Update config as needed
+ */
 const config = {
   subjectFilter: "Website Contact from ncfloorandtile.com",
+  autoResponseSubject: "Message Received | ncfloorandtile.com",
+  forwardTo: "jason@ncfloorandtile.com, kerry@ncfloorandtile.com, sean@ncfloorandtile.com",
   labelName: "Auto-replied",
   maxThreads: 100,
   startingThread: 0,
@@ -32,12 +37,12 @@ function checkAndReply() {
       // Send reply
       MailApp.sendEmail({
         to: email,
-        subject: "Message Received | ncfloorandtile.com",
+        subject: config.autoResponseSubject,
         htmlBody: body
       })
 
       // Forward message
-      message.forward("jason@ncfloorandtile.com, kerry@ncfloorandtile.com, sean@ncfloorandtile.com")
+      message.forward(config.forwardTo)
 
       // Label the thread as auto-replied
       label.addToThread(thread);

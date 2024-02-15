@@ -5,7 +5,7 @@ function testSendEmail() {
 
   Address : 3030 Saint James Pl
 
-  Phone : 7075999948
+  Phone : 707-123-4567
 
   Email : seanpkent@gmail.com
 
@@ -17,7 +17,7 @@ Thanks
 
   spamhash_response : north
 
-  IP Address : 24.156.46.217`;
+  IP Address : 111.111.111.111`;
 
 
     const template = HtmlService.createTemplateFromFile("auto-response-template");
