@@ -100,5 +100,8 @@ function cleanupMessage(message) {
  * Extract email from the original message
  */
 function extractEmail(message) {
-    return message.match(/email : .+/gi)[0].split(" : ")[1];
+    // Find email line
+    var emailLine = message.match(/email : .+/gi)[0].split(" : ")[1];
+    // Strip out any surrounding html
+    return emailLine.replace(/<[^>]*>/g, "");
 }
